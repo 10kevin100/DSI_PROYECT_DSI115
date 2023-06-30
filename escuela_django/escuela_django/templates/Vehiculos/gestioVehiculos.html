@@ -1,0 +1,113 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+
+Vehiculos
+
+{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+
+    {% for message in messages%}
+
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{message}}</strong>
+        </div>
+    {%endfor%}
+    {%endif%}
+
+    <div style="display: flex;flex-wrap: wrap;flex-direction: row; align-content: space-between; justify-content: center;width: 100%;">
+
+      
+                <style>
+            
+                .tabla th,td{
+                    margin: 10px;
+                    padding: 10px 40px;
+                    border: 2px solid white;
+                    color: white;
+                  
+
+                }
+
+                .pdf{
+                    padding: 10px 20px; border: 2px solid white; background-color: orange; margin: 20px auto;display: inline-block; text-decoration: none; color: black;
+                }
+
+                .pdf:hover{
+
+                    background-color: blue;
+                    color:white;
+                }
+
+                .pagebreik{
+                    page-break-before: always ;
+                }
+
+                .añadir{
+                    padding: 10px 20px;
+                    border: 1px solid;
+                    background-color: rgb(73, 128, 73);
+                    color: white;
+                    text-decoration: none;
+                    display: inline-block;
+                    margin: 10px 0px;
+                    border-radius: 5px;
+
+                }
+
+                .añadir:hover{
+                    background-color: rgb(50, 99, 50);
+                    color: white;
+                }
+
+
+                </style>
+
+        
+        <div>
+            <h2 style="color: white;">Listado de Vehiculos</h2>
+
+            <a href="{% url 'registrarVehiculo'%}" class="añadir">Añadir Vehiculo</a>
+            
+            <table  class="tabla">
+                <tr>
+                    <th>#</th>
+                    <th>Placa</th>
+                    <th>Marca</th>
+                    <th>Instructor</th>
+                    <th colspan="2">Acciones</th>
+                        
+                </tr>
+                {% for vehiculo in listaVehiculos%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{vehiculo.vehiculo_placa}}</td>
+                        <td>{{vehiculo.vehiculo_marca}}</td>
+                        <td>{{vehiculo.instructor.empleado.empleado_nombre}}</td>
+                        <td><a href="/editarVehiculo/{{vehiculo.vehiculo_id}}" style="padding: 10px 20px; border: 1px; background-color: blue;color: white; text-decoration: none; border-radius: 5px;" >Editar</a></td>
+                        <td><a href="/eliminarVehiculo/{{vehiculo.vehiculo_id}}" style="padding: 10px 20px; border: 1px; background-color: red;color: white; text-decoration: none; border-radius: 5px;" class="btnEliminacion">Eliminar</a></td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+            <br>
+             <a href="/modules/" class="btn btn-danger"><i class="bi bi-trash-fill">Regresar</i></a>
+
+            <a href="/documento/" class="btn btn-warning" class="pdf">Generar PDF</a>
+
+        </div>
+
+        
+
+        
+    </div>
+     
+    <script src="{% static 'javascript/gestionVehiculo.js'%}"></script>
+     
+
+{%endblock%}

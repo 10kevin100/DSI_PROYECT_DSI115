@@ -1,0 +1,53 @@
+.Marco{
+    margin: auto;
+    border: 2px solid #FFD700;
+    background: white;
+    width: 30%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    
+}
+
+.Marco h2{
+    width: 100%;
+    margin: 20px auto;
+    color:orange;
+    text-align: center;
+    
+}
+
+.formato form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    margin: 20px auto;
+    width: 90%;
+    color: rgb(13, 9, 1);
+}
+
+.vehiculo{
+  display: flex;
+  align-items: center;
+}
+
+
+.buton{
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+input{
+  padding: 5px;
+  border-color: lightgray;
+}
+
+select{
+ padding: 5px;
+ border-color: lightgray;
+  width: 70%
+}
+
+textarea{
+  border-color: lightgray;
+  padding: 5px;
+}

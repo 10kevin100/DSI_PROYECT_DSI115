@@ -1,0 +1,186 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+
+encuesta
+
+{% endblock %}   
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/encuesta.css'%}">
+
+
+
+<form method="POST" action="{% url 'llenar_encuesta' %}" class="form-area">
+  {% csrf_token %}
+  <div class="contenedor">
+    <div class="row single-form g-0">
+      <div class="col-sm-12 col-lg-100%">
+        <div class="arriba">
+          <h2 class="encabezado">Encuesta de Satisfacción</h2>
+          <p class="instrucciones">Estimado(a) participante.<br><br>
+
+            ¡Gracias por participar en nuestro curso de manejo! Queremos asegurarnos de que tu experiencia haya sido
+            satisfactoria y que hayas recibido una instrucción de calidad. Tu opinión es muy valiosa para nosotros, por
+            lo que te invitamos a completar esta breve encuesta de satisfacción.<br><br>
+
+            En esta encuesta, te pediremos que selecciones al instructor que deseas evaluar y compartas tu opinión sobre
+            diferentes aspectos relacionados con su desempeño. Además, tendrás la oportunidad de dejarnos tus
+            comentarios y sugerencias adicionales en un campo opcional. Tu participación en esta encuesta nos ayudará a
+            evaluar y mejorar la calidad de nuestros instructores, así
+            como a brindar un mejor servicio a futuros estudiantes.<br><br>
+
+            Agradecemos sinceramente tu tiempo y tus comentarios. Tu satisfacción es nuestra prioridad, y esperamos
+            poder seguir brindándote una experiencia de aprendizaje de manejo excepcional en el futuro.<br><br>
+
+            Atentamente, Escuela de Manejo Lopez</p>
+        </div>
+      </div>
+      <div>
+        <div class="col-sm-12 col-lg-100%"></div>
+        <div class="abajo">
+          <form>
+            <label for="instructor" class="insLabel">Seleccione un instructor a evaluar:</label>
+            <select name="instructor" ; class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+              <option value="" disabled selected hidden>Seleccione un instructor...</option>
+              {% for instructor in instructores %}
+              <option value="{{ instructor.instructor_id }}">{{ instructor.empleado.empleado_nombre }}</option>
+              {% endfor %}
+            </select>
+
+
+            <div class="mb-3">
+              <label for="pregunta1" class="pregunta">¿En general, cómo calificarías la calidad de las clases impartidas
+                por el
+                instructor?</label>
+              <select name="pregunta1" ; class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción</option>
+                <option value="5">Excelente</option>
+                <option value="4">Muy buena</option>
+                <option value="3">Buena</option>
+                <option value="2">Regular</option>
+                <option value="1">Mala</option>
+              </select>
+
+              <label for="pregunta2" class="pregunta">¿El instructor fue claro y conciso al explicar los
+                conceptos
+                relacionados con la
+                conducción?</label>
+              <select name="pregunta2" ; class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción...</option>
+                <option value="5">Totalmente claro y conciso</option>
+                <option value="4">Muy claro y conciso</option>
+                <option value="3">Moderadamente claro y conciso</option>
+                <option value="2">Poco claro y conciso</option>
+                <option value="1">Nada claro y conciso</option>
+              </select>
+
+              <label for="pregunta3" class="pregunta">¿El instructor fue paciente y brindó apoyo durante las prácticas
+                de manejo?</label>
+              <select name="pregunta3" class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción...</option>
+                <option value="5">Totalmente paciente y brindó un excelente apoyo</option>
+                <option value="4">Muy paciente y brindó un buen apoyo</option>
+                <option value="3">Moderadamente paciente y brindó un apoyo adecuado</option>
+                <option value="2">Poco paciente y brindó un apoyo limitado</option>
+                <option value="1">Nada paciente y brindó un apoyo insuficiente</option>
+              </select>
+
+              <label for="pregunta4" class="pregunta">¿El instructor proporcionó retroalimentación constructiva para
+                mejorar tus
+                habilidades
+                de
+                conducción?</label>
+              <select name="pregunta4" class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción...</option>
+                <option value="5">Sí, proporcionó retroalimentación constructiva de manera excelente</option>
+                <option value="4">Sí, proporcionó retroalimentación constructiva de manera efectiva</option>
+                <option value="3">Sí, proporcionó retroalimentación constructiva de manera adecuada</option>
+                <option value="2">No, proporcionó poca retroalimentación constructiva</option>
+                <option value="1">No, no proporcionó retroalimentación constructiva</option>
+              </select>
+
+              <label for="pregunta5" class="pregunta">¿El instructor estuvo disponible para responder tus preguntas y
+                preocupaciones?</label>
+              <select name="pregunta5" class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción...</option>
+                <option value="5">Sí, siempre estuvo disponible y respondió de manera excelente</option>
+                <option value="4">Sí, estuvo disponible y respondió de manera efectiva</option>
+                <option value="3">Sí, estuvo disponible y respondió de manera adecuada</option>
+                <option value="2">No siempre estuvo disponible o respondió de manera limitada</option>
+                <option value="1">No estuvo disponible o no respondió a mis preguntas y preocupaciones</option>
+              </select>
+
+              <label for="pregunta6" class="pregunta">¿El instructor fomentó un ambiente de aprendizaje seguro y
+                respetuoso?</label>
+              <select name="pregunta6" class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción...</option>
+                <option value="5">Sí, fomentó un ambiente seguro y respetuoso de manera excelente</option>
+                <option value="4">Sí, fomentó un ambiente seguro y respetuoso de manera efectiva</option>
+                <option value="3">Sí, fomentó un ambiente seguro y respetuoso de manera adecuada</option>
+                <option value="2">No siempre fomentó un ambiente seguro y respetuoso</option>
+                <option value="1">No fomentó un ambiente seguro y respetuoso</option>
+              </select>
+
+              <label for="pregunta7" class="pregunta">¿El instructor mostró conductas inadecuadas como acoso, bullying,
+                uso de palabras ofensivas, etc. durante el desarrollo de las clases?</label>
+              <select name="pregunta7" class="form-select w-50" style="width: 50px; padding: 5px 5px 5px 15px" required>
+                <option value="" disabled selected hidden>Seleccione una opción...</option>
+                <option value="5">No, el instructor siempre mantuvo un comportamiento respetuoso y adecuado</option>
+                <option value="4">No, el instructor rara vez mostró conductas inadecuadas</option>
+                <option value="3">En algunas ocasiones, el instructor mostró conductas inadecuadas</option>
+                <option value="2">Sí, el instructor mostró conductas inadecuadas con cierta frecuencia</option>
+                <option value="1">Sí, el instructor mostró conductas inadecuadas de manera constante</option>
+              </select>
+              <div class="comentarios">
+                <label for="encuesta_comentario" class="from-control">Comentarios:</label>
+                <div>
+                  <textarea name="encuesta_comentario" id="miTextarea" class="from-control1" style="width: 60%"
+                  rows="4"></textarea>
+                </div>
+                
+              </div>
+              <div id="mensajeError" style="color: red;"></div>
+            </div>
+            <div class="boton">
+              <button class="btn btn-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                </svg> Enviar encuesta
+            </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+  
+</form>
+
+<script src="{% static 'javascript/encuesta.js'%}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function mostrarAlerta() {
+    var alerta = $("#alerta");
+    alerta.show();
+    setTimeout(function() {
+        alerta.hide();
+    }, 2000);
+}
+</script>
+{%endblock%}

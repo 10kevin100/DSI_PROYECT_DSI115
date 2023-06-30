@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{%block title%}Mantenimiento{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/registrarMantenimiento.css'%}">
+<br> 
+<div class="Marco">
+  <h2>Modificación de Mantenimiento</h2>
+  <div class="formato">
+    <form method="post" action="/modules/mantenimiento/modificarMantenimiento/{{mantenimiento.mantenimiento_id}}/1">
+      {% csrf_token %}
+
+      <div class="form-group vehiculo">
+        <label for="vehiculo_id" class="form-label">Seleccione la placa del vehiculo con su modelo:</label>
+        <select name="vehiculo_id" class="select">
+          {% for vehiculo in vehiculos %}
+            <option value="{{ vehiculo.vehiculo_id }}" {% if vehiculo.vehiculo_id == mantenimiento.vehiculo_id %}selected{% endif %}>Modelo: {{vehiculo.vehiculo_marca}} - Placa: {{ vehiculo.vehiculo_placa }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fecha" class="form-label">Fecha:</label>
+        <input type="date" name="fecha" style="width: 25%;" value="{{ mantenimiento.mantenimiento_fecha|date:'Y-m-d' }}" required>          
+        <label for="costo" class="col-form-label">Costo:</label>
+        <input type="text" name="costo" placeholder="00000.00" style="width: 39%;" value="{{ mantenimiento.mantenimiento_costo }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="comentario" class="form-label">Comentario:</label>
+        <textarea name="comentario" style="width: 96%" rows="4" required>{{mantenimiento.mantenimiento_comentario}}</textarea>
+      </div>
+        
+      <div class="form-group buton">
+        <a class="btn btn-secondary" href="/modules/listaMantenimiento" role="button" style="height: 40px;">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

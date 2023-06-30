@@ -1,0 +1,8 @@
+# Carpeta pycache
+__pycache__/
+
+# Archivos de migraciones generados por Django
+*.py[cod]
+*.bak
+*.swp
+*.pyc

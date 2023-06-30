@@ -1,0 +1,120 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+   
+}
+
+.cabecera{
+    margin: 0px auto;
+    color: gold;
+
+}
+
+.busqueda{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    overflow: hidden;
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+   
+
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.busqueda label{
+    padding: 10px 15px;
+    margin: 0px 10px;
+
+}
+.busqueda button{
+    color:black;
+    background-color: rgb(96, 219, 219);
+    padding: 5px 15px;
+    margin: 0px 10px;
+    margin-top:5px ;
+    border-radius: 5px;
+}
+
+.busqueda input{
+    padding: 10px 20px;
+}
+
+.cabecera.nueva{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.añadir{
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid;
+    background-color: rgb(73, 128, 73);
+    color: white;
+    text-decoration: none;
+    margin: 5px 0px;
+    border-radius: 5px;
+
+}
+
+.añadir:hover{
+    background-color: rgb(50, 99, 50);
+    color: white;
+}
+
+.tabla{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 10px auto;
+}
+
+.tabla th{
+    color: gold;
+    border-bottom: 3px solid gold;
+    padding: 10px 30px;
+}
+
+.tabla td{
+    color: white;
+    border-bottom: 3px solid white;
+    padding: 10px 30px;
+}
+
+.editar{
+    background-color: rgb(53, 53, 235);
+    color: white;
+    text-decoration: none;  
+    padding: 10px 1em;
+    border: 3px solid white;
+}
+
+.editar:hover{
+    background-color: blue;
+    color: white;
+}
+
+.paquete{
+    background-color: rgb(74, 78, 74);
+    color: white;
+    text-decoration: none;
+    padding: 10px 1em;
+    border: 3px solid white;
+}
+
+.paquete:hover{
+    background-color: rgb(41, 44, 41);
+    color: white;
+}
+
+

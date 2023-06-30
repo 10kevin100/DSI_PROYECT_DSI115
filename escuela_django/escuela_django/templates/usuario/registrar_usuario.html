@@ -1,0 +1,93 @@
+{%extends 'base.html'%}
+
+<!--Anadiendo titulo-->
+{%block title%}REGISTRAR USUARIO{%endblock%}
+
+<!--Anadiendo contenido-->
+{%block content%}
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'css/usuario/registrar_usuario_form.css'%}">
+
+{% if messages %}
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      {% for message in messages %}
+        {{message}}
+      {% endfor %}
+    </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+{% endif %}
+
+<h1 style="text-align: center; color: gold; padding-top: 30px;">Registrar Usuario</h1>
+  <form style="text-align: center;" action="" method="post">
+
+    <!--Para asegurar el formulario-->
+    {% csrf_token %}
+    
+    <div class="registrar_usuario">
+      
+       
+      <!-- usuario_rol -->
+      <!-- Aqui que se haga un select y que extraiga los dos tipos de rol que existen -->
+      <label class="" for="form2Example1" >Rol</label>
+      <select name="usuario_rol" id="" style="margin: 0px 0px 20px 0px;">
+        <option value="" disabled selected hidden>Seleccione una opcion...</option>
+        <option value="1">Administrador</option>
+        <option value="2" >Instructor</option>
+        <option value="3">Encargado</option>
+      </select>
+      
+
+      <!-- Nombre empleado  -->
+      <label class="form-label" for="form2Example1" >Nombre</label>
+      <input required type="text" name="empleado_nombre" id="" pattern="[A-Za-z]+" placeholder="Escribe aqui..." style="margin: 0px 0px 20px 0px;"/>
+
+      <!-- apellido empleado  -->
+      <label class="form-label" for="form2Example1">Apellido</label>
+      <input required type="text" name="empleado_apellido" id="" pattern="[A-Za-z]+" placeholder="Escribe aqui..." style="margin: 0px 0px 20px 0px;"/> 
+
+      <!-- telefono empleado  -->
+      <label class="form-label" for="form2Example1">Teléfono</label>
+      <input type="text" name="empleado_telefono" id="" pattern="[0-9]{8}" placeholder="#### ####" style="margin: 0px 0px 20px 0px;"/> 
+
+      <!-- usuario_contrasena -->
+      <label class="form-label" for="form2Example2">Contrase&#241a</label>
+      <input required type="password" name="usuario_contrasena" id="" placeholder="Escribe aqui..." style="margin: 0px 0px 20px 0px;"/>
+      
+      <!-- correo empleado  -->
+      <label class="form-label" for="empleado_correo">Correo</label>
+      <input type="text" name="empleado_correo" id="empleado_correo" placeholder="Escribe aqui..." style="margin: 0px 0px 20px 0px;"/> 
+
+
+      <!-- usuario_estado  -->
+      <label class="form-label" for="form2Example2">Estado</label>
+      <select name="usuario_estado" id="" style="margin: 0px 0px 10px 0px;">
+        <option value="1" selected="true">Activado</option>
+        <option value="0">Desactivado</option>
+      </select>
+
+    </div>
+    <!-- Submit  -->
+    <button type="submit"   class="btn btn-success" style="margin: 0px 0px 40px 0px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+        <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+      </svg> Registrar Usuario
+   </button>
+
+
+  </form>
+
+  {%block javascript%}
+  <script>
+    var toastEl = document.querySelector('.toast');
+    var toast = new bootstrap.Toast(toastEl);
+    toast.show();
+  </script>
+  {%endblock%}
+
+{%endblock%}

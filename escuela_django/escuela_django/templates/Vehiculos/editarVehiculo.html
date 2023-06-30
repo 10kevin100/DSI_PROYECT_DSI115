@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+
+{% block title%} Editar Vehiculo {% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'css/editarVehiculo.css'%}">
+
+<div class="marco">
+    <h2>Editar Vehiculo</h2>
+
+    <div class="forma">
+        <form action="{% url 'edicionVehiculo' %}" method="POST">
+
+            {% csrf_token %}
+            
+            <input type="hidden" id="vehiculo_id" name="vehiculo_id" value="{{vehiculo.vehiculo_id}}"/>
+            <label for="vehiculo_placa">Placa:</label>
+            <input type="text" id="vehiculo_placa" name="vehiculo_placa" value="{{vehiculo.vehiculo_placa}}" placeholder="xxx-xxx..." required="true"/>
+            <label for="vehiculo_marca">Marca</label>
+            <input type="text" id="vehiculo_marca" name="vehiculo_marca" value="{{vehiculo.vehiculo_marca}}" required="true"/>
+            <label for="vehiculo_tipo">Tipo:</label>
+            <select id="vehiculo_tipo" name="vehiculo_tipo">
+
+                {% if vehiculo.vehiculo_tipo == 'sedan' %}
+                     <option value="sedan" selected="true">Sedan</option>
+                     <option value="pick-up" >Pick-Up</option>
+                     <option value="convertible" >Convertible</option>
+                {% elif vehiculo.vehiculo_tipo == 'pick-up' %}
+                     <option value="pick-up" selected="true">Pick-Up</option>
+                     <option value="sedan">Sedan</option>
+                     <option value="convertible">Convertible</option>
+                {% else %}
+                     <option value="convertible" selected="true">Convertible</option>
+                     <option value="pick-up" >Pick-Up</option>
+                     <option value="sedan">Sedan</option>
+
+                {% endif %}
+            
+                
+            </select>
+            
+            <label for="vehiculo_transmision">Tipo de transmision:</label>
+            <select id="vehiculo_transmision" name="vehiculo_transmision" >
+
+                {% if vehiculo.vehiculo_transmision == 'Automatico'%}
+
+                    <option value="Automatico" selected="true">Automático</option>
+                    <option value="estandar">Estandár</option>
+                {%else%}
+                     <option value="estandar" selected="true">Estandár</option>
+                     <option value="Automatico" >Automático</option>
+                {%endif%}
+                
+                
+            </select>
+
+            <label for="instructor">Seleccione el Intructor:</label>
+            <select id="instructor" name="instructor" style="padding: 10px 30px;">
+
+                {%for instructor in listaInstructor%}
+                    {% if vehiculo.instructor == instructor %}
+                        <option value="{{instructor.instructor_id}}" selected="true">{{instructor.empleado.empleado_nombre}}</option>
+                    {%else%}
+                        <option value="{{instructor.instructor_id}}">{{instructor.empleado.empleado_nombre}}</option>
+                    {%endif%}
+                {% endfor %}
+            </select>
+            
+
+            <!-- Submit  -->
+            <button type="submit">Guardar</button>
+
+
+        </form>
+    </div>
+
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,16 @@
+#titulo_pagina{
+    color: gold;
+    text-align: center;
+}
+#barra_busqueda{
+    text-align: left;    
+}
+#barra_busqueda input{
+    font-style: italic;
+}
+#barra_busqueda button {
+    text-align: right;   
+}
+#tabla_usuario_body td{
+    font-style: italic;
+}

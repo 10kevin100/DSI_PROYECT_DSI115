@@ -1,0 +1,137 @@
+{%extends 'base.html'%}
+{%block title%}Mantenimiento{%endblock%}
+{%block content%}
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'css/tablaEstilo.css'%}">
+
+{% if messages %}
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+{% endif %}  
+
+<style>
+.row {
+  max-width: 800px;
+  margin: 30;
+  margin-left: 4%;
+}
+
+</style>
+<div >
+      <h1 class="titulo" style="padding: 0px 5% 0px 7%;">Lista de mantenimientos</h1>
+</div>
+<div class="row">
+  <div class="col-12 mt-3 mb-4" id="div_form">
+      <form action="{% url 'mantenimientos' %}" method="POST" id="barra_busqueda">
+          {% csrf_token %}
+          
+          <input type="text" id="txt_buscar" name="txt_buscar" placeholder="Escribe aquí..." style="margin: 0% 15px 0% 5%; padding: 0px 0px 3px 0px; line-height: 35px;">          
+          {%if busqueda == True%}
+          <a href="{% url 'mantenimientos' %}" class="btn btn-secondary">Reiniciar</a>
+          {%else%}
+          <button type="submit" class="btn btn-info" style="margin: 0% 35px 0% 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            Buscar</button>
+          {%endif%}
+          <a href="registrarMantenimiento" class="btn btn-success ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wrench-adjustable" viewBox="0 0 16 16">
+              <path d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z"/>
+              <path d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+            </svg>
+            Agregar Mantenimiento</a>
+      </form>
+      
+  </div>
+</div>
+
+<!--Estilo de tabla que tenia antes class="table table-bordered"-->
+</div>
+
+    <div class="table-responsive" style="padding: 0px 5% 0px 7%;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Placa</th>
+                    <th>Marca</th>
+                    <th>Comentario</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="body_table">
+               {% for mantenimiento in mantenimientos %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{mantenimiento.vehiculo.vehiculo_placa}}</td>
+                    <td>{{mantenimiento.vehiculo.vehiculo_marca}}</td>
+                    <td>{{mantenimiento.mantenimiento_comentario}}</td>
+                    <td>{{mantenimiento.mantenimiento_fecha}}</td>
+                    <td>{{mantenimiento.mantenimiento_costo}}</td>
+                    <td>
+                        <a href="/modules/mantenimiento/modificarMantenimiento/{{mantenimiento.mantenimiento_id}}/0" class="btn btn-success"><i class="bi bi-pencil-square text-white">Modificar Mantenimiento</i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+           </tbody>
+        </table>
+    </div>
+
+    <div style="padding: 0px 5% 0px 7%;">
+      <a href="/modules/" class="btn btn-danger"><i class="bi bi-trash-fill">Regresar</i></a>
+    </div>
+
+    
+    <script>
+        function sortTable() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("tabla");
+          switching = true;
+      
+          while (switching) {
+            switching = false;
+            rows = table.rows;
+      
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[1]; // Obtener la celda con el número de placa
+              y = rows[i + 1].getElementsByTagName("TD")[1]; // Obtener la siguiente celda con el número de placa
+      
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+      
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+      
+        window.onload = function () {
+          sortTable();
+        };
+
+       
+         var toastEl = document.querySelector('.toast');
+         var toast = new bootstrap.Toast(toastEl);
+         toast.show();
+ 
+
+      </script>
+
+{%endblock%}

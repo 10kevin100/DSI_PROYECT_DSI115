@@ -1,0 +1,106 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+EditarAlumno
+{%endblock%}
+
+{% block content%}
+
+<link rel="stylesheet" href="{% static 'css/alumno/registroAlumno.css'%}"/>
+
+{% if messages %}
+{% for message in messages%}
+
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong class="text-dark">{{message}}</strong>
+</div>
+{%endfor%}
+{%endif%}
+
+<div class="contenedor">
+    <div class="titulo">
+        <h2>Editar Alumno</h2>
+    </div>
+    <!-- Tomando la informacion del nuevo alumno -->
+    <form class="contenedor formulario" action="{% url 'edicionAlumno'%}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" id="alumno_id" name="alumno_id" value="{{alumno.alumno_id}}"/>
+        <div class="nombre">
+            <label for="nombre">Nombres:</label>
+            <input type="text" id="nombre" name="nombre" value="{{alumno.alumno_nombre}}" required="true"/>
+            <label for="apellido">Apellidos:</label>
+            <input type="text" id="apellido" name="apellido" value="{{alumno.alumno_apellido}}" required="true"/>
+        </div>
+        <div class="nombre">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" value="{{alumno.alumno_telefono}}" required="true" maxlength="8" minlength="8"/>
+        </div>
+        <div class="menorEdad">
+            <label for="menorEdad">¿Es menor de edad?</label>
+            <div>
+                {% if alumno.alumno_encargado == None %}
+                <label><input type="radio" name="menorEdad" value="1" onclick="encargado.disabled=false"/>SI</label>
+                <label><input type="radio" name="menorEdad" value="0" onclick="encargado.disabled=true" checked="true"/>NO</label>
+                {%else%}
+                <label><input type="radio" name="menorEdad" value="1" onclick="encargado.disabled=false" checked="true"/>SI</label>
+                <label><input type="radio" name="menorEdad" value="0" onclick="encargado.disabled=true"/>NO</label>
+                {%endif%}
+            </div>
+            <div>
+                <label for="encargado">Nombre de encargado:</label>
+                <input type="text" id="encargado" name="encargado" required="true" value="{{alumno.alumno_encargado}}" disabled="disabled"/>
+            </div>
+        <div>
+        <div class="menorEdad">
+                <label for="id">Identificación:</label>
+                <div>
+                    {%if documento.documento_tipo == 'DUI' %}
+                    <label><input type="radio" name="id" value="DUI" required checked/>DUI</label>
+                    {%elif documento.documento_tipo == 'Pasaporte' %}
+                    <label><input type="radio" name="id" value="Pasaporte" required checked/>Pasaporte</label>
+                    {%else%}
+                    <label><input type="radio" name="id" value="Permiso de residencia" required checked/>Permiso de residencia</label>
+                    {%endif%}
+                </div>
+                <div class="id">
+                    <label for="numId">Número de ID:</label>
+                    <input type="text" id="numId" name="numId" value="{{documento.documento_num}}" required="true" disabled/>
+                    <a class="agregar" title="Agregar"><ion-icon name="add-circle-outline" style="size: 32px;"></ion-icon></a>
+                </div>
+        </div>
+        <div class="menorEdad">
+                <label for="licencia">Licencia a tramitar:</label>
+                <div>
+                    {% if licencia == 1%}
+                    <label><input type="radio" name="licencia" value="1" required checked/>Liviana</label>
+                    <label><input type="radio" name="licencia" value="2" required/>Pesada</label>
+                    <label><input type="radio" name="licencia" value="3" required/>Moto</label>
+                    {% elif licencia == 2%}
+                    <label><input type="radio" name="licencia" value="1" required/>Liviana</label>
+                    <label><input type="radio" name="licencia" value="2" required checked/>Pesada</label>
+                    <label><input type="radio" name="licencia" value="3" required/>Moto</label>
+                    {%else%}
+                    <label><input type="radio" name="licencia" value="1" required/>Liviana</label>
+                    <label><input type="radio" name="licencia" value="2" required/>Pesada</label>
+                    <label><input type="radio" name="licencia" value="3" required checked/>Moto</label>
+                    {%endif%}
+                </div>
+        </div>
+        </div>
+
+        <button type="submit" class="enviar" value="Guardar">Guardar</button>
+
+    </form>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+   
+    
+</script>
+
+{%endblock%}

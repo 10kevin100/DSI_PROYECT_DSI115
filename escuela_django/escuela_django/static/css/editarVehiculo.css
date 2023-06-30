@@ -1,0 +1,28 @@
+.marco{
+    margin: auto;
+    border: 5px solid #FFD700;
+    width: 50%;
+}
+
+.marco h2{
+    width: 40%;
+    margin: 20px auto;
+    color:white;
+    
+}
+
+.forma form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    margin: 20px auto;
+    width: 70%;
+    color: white;
+}
+
+form button,input,select{
+
+    margin: 20px;
+}
+
+

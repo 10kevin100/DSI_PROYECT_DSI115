@@ -1,0 +1,7 @@
+user: minerva
+email: correo@correo.com
+password: 1234
+
+correr este comando: 
+manage.py createsuperuser 
+Despues introduzcan los campos de arriba y estaría listo para iniciar seisón  

@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%block title%}Mantenimiento{%endblock%}
+{%block content%}
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'css/registrarMantenimiento.css'%}">
+
+<!-- registrar_mantenimiento.html -->
+<br>
+<div class="Marco" >    
+    <h2>Registro de Mantenimiento</h2>
+      <div class="formato">
+        <form method="post" action="{% url 'registrar_mantenimiento' %}">
+          {% csrf_token %}
+
+          <div class="form-group vehiculo">
+            <label for="vehiculo_id" class="form-label">Seleccione la placa del vehiculo con su modelo:</label>
+            <select name="vehiculo_id" class="select">
+              {% for vehiculo in vehiculos %}
+                <option value="{{ vehiculo.vehiculo_id }}">Modelo: {{vehiculo.vehiculo_marca}} - Placa: {{ vehiculo.vehiculo_placa }} </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha" class="form-label">Fecha:</label>
+            <input type="date" name="fecha" style="width: 25%;" required>          
+            <label for="costo" class="col-form-label">Costo: </label>
+            <input type="text" name="costo" placeholder="00000.00" style="width: 39%;" required>
+          </div>
+
+          <div class="form-group">
+            <label for="comentario" class="form-label">Comentario</label>
+            <textarea name="comentario" style="width: 96%" rows="4" required></textarea>
+          </div>
+          
+          <div class="form-group buton">
+            <a class="btn btn-danger" href="listaMantenimiento" role="button" style="height: 40px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+              </svg>
+              Cancelar</a>
+            <button type="submit" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg>
+              Registrar</button>
+          </div>
+        </form>
+    </div>
+</div>
+
+{%endblock%}

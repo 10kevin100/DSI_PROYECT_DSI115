@@ -1,0 +1,95 @@
+<!--Haciendo una herencia de base-->
+{% extends 'base.html' %}
+{%load static%}
+
+<!--Agregando titulo-->
+{%block title%}QUIENES SOMOS{%endblock%}
+<!--Agregando contenido-->
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/modulos.css'%}">
+<h1></h1>
+<br>
+<ul>
+    <div class="centered-row">
+        <div class="row" style="width: 90%;">
+         <!-- Instructor -->
+         <div class="col-sm-3">
+            <div class="card" style="width: 16rem;">
+              <div class="card text-center">
+              <img src="{% static 'img/instructor.png' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Instructor</h5>
+                <p class="card-text">Asignar los empleados como instructor o modificarlos</p>
+                <p class="card-text"><small class="text-body-secondary">Clic al boton para ver la lista</small></p>
+                <a href="{% url 'lista_empleados'%}" class="btn btn-primary">Ver lista</a>
+              </div>
+            </div>
+            </div>
+         </div>
+        
+         <!-- Vehiculo -->
+          <div class="col-sm-3">
+            <div class="card" style="width: 16rem;">
+              <div class="card text-center">
+              <img src="{% static 'img/vehiculo.png' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Vehiculo</h5>
+                <p class="card-text">Ver la lista de vehiculos y asignar vehiculo a instructor</p>
+                <p class="card-text"><small class="text-body-secondary">Clic al boton para ver la lista</small></p>
+                <a href="{% url 'homeVehiculo' %}" class="btn btn-primary">Ver lista</a>
+              </div>
+            </div>
+            </div>
+          </div>
+
+        <!-- Usuario -->
+            <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                <div class="card text-center">
+                <img src="{% static 'img/Usuario.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Usuario</h5>
+                    <p class="card-text">Ver la lista de usuario o crear uno con su rol</p>
+                    <p class="card-text"><small class="text-body-secondary">Clic al boton para ver la lista</small></p>
+                    <a href="{% url 'usuarios' %}" class="btn btn-primary">Ver lista</a>
+                </div>
+                </div>
+                </div>
+            </div>
+
+        <!-- Mantenimiento -->
+            <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                <div class="card text-center">
+                <img src="{% static 'img/registrar.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Mantenimiento</h5>
+                    <p class="card-text">lista de mantenimientos realizados a los vehiculos</p>
+                    <p class="card-text"><small class="text-body-secondary">Clic al boton para ver la lista</small></p>
+                    <a href="{% url 'listaMantenimiento'%}" class="btn btn-primary">Ver lista</a>
+                </div>
+                </div>
+                </div>
+            </div>
+
+        <!-- Alumno     -->
+             <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                <div class="card text-center">
+                <img src="{% static 'img/Usuario.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Alumnos</h5>
+                  <p class="card-text">Ver la lista de alumnos o crear una nueva ficha</p>
+                  <p class="card-text"><small class="text-body-secondary">Clic al boton para ver la lista</small></p>
+                  <a href="{% url 'homeAlumno' %}" class="btn btn-primary">Ver lista</a>
+                </div>
+                </div>
+                </div>
+             </div>
+
+        </div>
+    </div>
+    </div>    
+</ul>
+
+{%endblock%}

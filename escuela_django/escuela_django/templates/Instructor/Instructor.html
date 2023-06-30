@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{%block title%}Lista de Instructores{%endblock%}
+{%block content%}
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'css/tablaEstilo.css'%}">
+
+
+{% if messages %}
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+{% endif %}  
+
+   
+<div>
+  <h1 class="titulo" style="padding: 0px 5% 0px 7%;">Lista de empleados</h1>
+</div>
+      <div class="table-responsive" style="padding: 0px 5% 0px 5%;">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Empleado</th>
+                      <th>Telefono</th>
+                      <th>Accion</th>
+                      <th>Editar</th>
+                  </tr>
+              </thead>
+              <tbody class="body_table">
+
+                  {% for empleado in empleados %}
+                  <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{empleado.empleado_nombre}} {{empleado.empleado_apellido}}</td>
+                      <td>{{empleado.empleado_telefono}}</td> 
+                      {%if empleado.usuario.rol.rol_id == 2 %}
+                        <td><a href="removerInstructor/{{empleado.empleado_id}}" class="btn btn-danger"><i class="bi bi-trash-fill">Remover rol de instructor</i></a></td>
+                      {%else%}
+                        <td><a href="asignarInstructor/{{empleado.empleado_id}}" class="btn btn-success"><i class="bi bi-pencil-square text-white">Asignar como instructor</i></a></td>
+                      {%endif%}
+                      <td><a href="/modules/usuarios/editar_usuario/{{empleado.usuario.usuario_id}}/0" class="btn btn-info"><i class="bi bi-trash-fill">Modificar instructor</i></a></td>          
+                  </tr>
+                  {% endfor %}
+             </tbody>
+          </table>
+      </div>
+      <div style="padding: 0px 5% 0px 5%;">
+        <a href="/modules/" class="btn btn-danger"><i class="bi bi-trash-fill">Regresar</i></a>
+      </div>
+
+{%block javascript%}
+  <script>
+    var toastEl = document.querySelector('.toast');
+    var toast = new bootstrap.Toast(toastEl);
+    toast.show();
+  </script>
+  {%endblock%}
+
+  {%endblock%}

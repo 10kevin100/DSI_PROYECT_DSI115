@@ -1,0 +1,144 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title%}
+
+Registrar
+
+{% endblock %}
+
+{%block content%}
+
+
+ <div style="display: flex;flex-wrap: wrap;flex-direction: row; align-content: space-between; justify-content: center;width: 100%;">
+
+        <div class="ingresar">
+
+            <form style="text-align: center;" action={% url 'registrarVehiculo' %} method="POST">
+
+                <!--Para asegurar el formulario-->
+                {% csrf_token %}
+
+                <style>
+                .ingresar{
+                    
+                    
+
+                    padding: 15px;
+                    border-radius:5px;
+                    margin: 10px 20px;
+                    border: 3px solid #FFD700;
+                    width: 30%;
+
+
+                }
+                .ingresar input{
+                    margin: 5px 0px;
+                    height: 35px;
+                    padding: 7px;
+                    width: 100%;
+                }
+                .ingresar button{
+                    height: 25px;
+                    margin: 10px auto;
+                    background-color: white;
+                    border: none;
+                    border-radius: 5px;
+                    color: #333;
+                    width: 100%;
+                    
+                }
+                .ingresar label{
+                    color: white;
+                }
+
+                .ingresar select{
+
+                    padding: 10px;
+                    margin: 5px auto;
+                    font-style: italic;
+                    width: 100%;
+                }
+
+
+
+             
+                .tabla th,td{
+                    margin: 10px;
+                    padding: 10px 40px;
+                    border: 2px solid white;
+                    color: white;
+                  
+
+                }
+
+                .pdf{
+                    padding: 10px 20px; border: 2px solid white; background-color: orange; margin: 20px auto;display: inline-block; text-decoration: none; color: black;
+                }
+
+                .pdf:hover{
+
+                    background-color: blue;
+                    color:white;
+                }
+
+                .pagebreik{
+                    page-break-before: always ;
+                }
+
+
+                </style>
+
+                
+                
+                
+                <h2 style="color:white;">Añadir Vehiculo</h2>
+                <!-- registro placa  -->
+                <label class="form-label" for="vehiculo_placa">Placa:</label>
+                <input type="text" name="vehiculo_placa" id="vehiculo_placa" pattern="P.{3}-.{3}" placeholder="Pxxx-xxx..." required="true"/>
+                <!-- registro marca  -->
+                <label class="form-label" for="vehiculo_marca">Marca</label>
+                <input type="text" name="vehiculo_marca" id="vehiculo_marca" pattern="[A-Za-z]+" placeholder="Escribe aqui..." required="true"/>
+
+                <label for="vehiculo_tipo">Tipo de vehiculo:</label>
+                <select id="vehiculo_tipo" name="vehiculo_tipo" >
+
+                    <option value="sedan" selected="true">Sedan</option>
+                    <option value="pick-up">Pick-Up</option>
+                    <option value="convertible">Convertible</option>
+                        
+                </select>
+                    
+                <label for="vehiculo_transmision">Tipo de transmision:</label>
+                <select id="vehiculo_transmision" name="vehiculo_transmision" >
+
+                    <option value="Automatico" >Automático</option>
+                    <option value="estandar" selected="true">Estandár</option>
+                        
+                        
+                </select>
+
+                <label for="instructor">Seleccione el Intructor:</label>
+                <select id="instructor" name="instructor" style="padding: 10px 30px;">
+
+                    {%for instructor in listaInstructor%}
+                        <option value="{{instructor.instructor_id}}">{{instructor.empleado.empleado_nombre}}</option>
+                    {% endfor %}
+                </select>
+                    
+
+                <!-- Submit  -->
+                <button type="submit">Guardar</button>
+
+                
+
+
+
+            </form>
+
+        </div>
+
+        
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+label{
+  font-size: 20px;
+}
+.card{
+  padding: 0%;
+}
+
+.card-body{
+  background-color: #e57d18;;
+}
+
+.mb-3{
+  text-align: left;
+  color:white
+}
+
+.h2{
+  color:aliceblue
+}
+
+p{
+  color:aliceblue
+}

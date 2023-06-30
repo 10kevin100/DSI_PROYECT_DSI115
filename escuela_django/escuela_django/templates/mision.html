@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%block title%}Lista de Instructores{%endblock%}
+{%block content%}
+{%load static%}
+
+<br>
+<div style="border-top: 5px solid white; background-color: #e57d18;">
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap;align-items: center; align-content: space-between; color: gold;">
+        <div style="width: 40%; display: flex; flex-direction: column; align-items: center;"><img src="{% static 'img/logo.png'%}" style="border: 5px solid white; width: 40%; margin: 10px auto;"/></div>
+        <div style="width: 40%; margin: 20px auto; display: flex; flex-direction: column; align-items: center;">
+            <p><strong>Misión:</strong></p>
+            <p style="color: white; justify-content: center; text-align: justify;">Ofrecer a los futuos conductores un aprendizaje integral bajo la tutoría de profesionales con alto grado de ética y responsabilidad en el servicio, y la utilización de la mas alta tencología para fines didácticos, creando así en nuestros clientes altos valores de responsabilidad al momento de estar al volante</p>
+            <p><strong>Visión:</strong></p>
+            <p style="color: white; justify-content: center; text-align: justify;">Ofrecer a los futuos conductores un aprendizaje integral bajo la tutoría de profesionales con alto grado de ética y responsabilidad en el servicio, y la utilización de la mas alta tencología para fines didácticos, creando así en nuestros clientes altos valores de responsabilidad al momento de estar al volante</p>
+        </div>
+       
+    </div>
+</div>
+<div style="border-top: 5px solid white; background-color: #e57d18;"></div>
+<br>
+{%endblock%}

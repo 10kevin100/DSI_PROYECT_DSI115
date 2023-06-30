@@ -1,0 +1,22 @@
+<!--Esta es la barra de navegacion superior -->
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/upper.css'%}"/>
+
+<nav id="nav_top_bar">
+    <h1>Escuela de Manejo Lopez</h1>
+    <a href="https://www.facebook.com/EscuelaDeManejoLopez.sv"><img src="{% static 'img/logo.png'%}" style="height: 70px;" title="Inicio"/></a>
+    <ul>
+        <li><a href={% url 'llenar_encuesta' %}>Encuesta</a></li> 
+        <li><a href={% url 'home' %}>Inicio</a></li> 
+        <li><a href={% url 'mision' %}>Misión</a></li>
+        <li><a href={% url 'modules' %}>Modulos</a></li>
+
+        <!--Comprobando si el usuario esta logeado-->
+        {% if request.user.is_authenticated %}
+            <li><a href={% url 'sign_out' %}>Salir</a></li>
+        {% else %}
+            <li><a href="/accounts/login/">Ingresar</a></li>
+        {%endif%}
+    </ul>
+</nav>

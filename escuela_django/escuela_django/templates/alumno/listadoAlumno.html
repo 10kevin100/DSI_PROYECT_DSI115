@@ -1,0 +1,91 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+{% block title %}
+Alumno
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/alumno/listadoAlumno.css'%}"/>
+
+
+
+
+{% if messages %}
+
+{% for message in messages%}
+
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong class="text-dark">{{message}}</strong>
+</div>
+{%endfor%}
+{%endif%}
+
+<div class="contenedor">
+    <div class="cabecera"><h2>Listado de alumnos</h2></div>
+    <!-- div que contendra los elementos de filtro al buscar un alumno -->
+    <div class="busqueda">
+       <form action="{% url 'busquedaAlumno'%}" method="POST">
+        {% csrf_token %}
+            <div>
+                <label for="busquedaId">ID alumno:</label>
+                <input type="text" id="busquedaId" name="busquedaId" placeholder=""/>
+            </div>
+            <div>
+                <label for="busquedaNombre">Nombre:</label>
+                <input type="text" id="busquedaNombre" name="busquedaNombre" placeholder=""/>
+            </div>
+            <div> 
+                <label for="busquedaApellido">Apellido:</label>
+                <input type="text" id="busquedaApellido" name="busquedaApellido" placeholder=""/>
+            </div>
+            <div>
+                <label for="busquedaTelefono">Teléfono:</label>
+                <input type="text" id="busquedaTelefono" name="busquedaTelefono" placeholder="#### ####" maxlength="8" minlength="8"/>
+            </div>
+            <div>
+                <button type="submit" id="buscar" name="buscar">Buscar</button>
+            </div>
+            <div>
+                <a href="/registrarAlumno/" class="añadir">Nuevo Alumno</a>
+            </div>
+
+        </form>  
+
+    </div>
+    <!-- listado de alumnos que se encuentran con el filtro -->
+    <div>
+        <div class="cabecera nueva"><h2>Alumnos</h2></div>
+
+        <div class="tabla">
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre alumno</th>
+                    <th>Apellido alumno</th>
+                    <th>Teléfono</th>
+                    <th colspan="2" style="margin: auto;">Acciones</th>
+                </tr>
+                {% for alumno in alumnosBusqueda %}
+                <tr>    
+                    <td>{{forloop.counter}}</td>
+                    <td>{{alumno.alumno_nombre}}</td>
+                    <td>{{alumno.alumno_apellido}}</td>
+                    <td>{{alumno.alumno_telefono}}</td>
+                    <td><a href="/editarAlumno/{{alumno.alumno_id}}" class="editar">Editar ficha</a></td>
+                    <td><a class="paquete">Ver paquetes</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+
+    </div>
+</div>
+<div style="padding: 0px 5% 0px 5%;">
+    <a href="/modules/" class="btn btn-danger"><i class="bi bi-trash-fill">Regresar</i></a>
+  </div>
+
+{% endblock %}

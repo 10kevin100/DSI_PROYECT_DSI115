@@ -1,0 +1,102 @@
+{%extends 'base.html'%}
+
+{%load static%}
+
+{%block title%}EDITAR USUARIO{%endblock%}
+
+{%block content%}
+
+{% if messages %}
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      {% for message in messages %}
+        {{message}}
+      {% endfor %}
+    </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+{% endif %}
+
+<link rel="stylesheet" href="{% static 'css/usuario/registrar_usuario_form.css'%}">
+<h1 style="text-align: center; color: gold;">Editar Usuario</h1>
+  <form style="text-align: center;" action="/modules/usuarios/editar_usuario/{{usuario.usuario_id}}/1" method="post">
+
+  
+
+    <!--Para asegurar el formulario-->
+    {% csrf_token %}
+    
+    <div class="registrar_usuario">
+      
+       
+      <!-- usuario_rol -->
+      <!-- Aqui que se haga un select y que extraiga los dos tipos de rol que existen -->
+      <label class="" for="form2Example1">Rol</label>
+      <select name="usuario_rol" id="" style="margin: 0px 0px 20px 0px;">
+        {%if usuario.rol.rol_id == 1%}
+        <option value="1" selected="true">Administrador</option>
+        <option value="2">Instructor</option>
+        <option value="3">Encargado</option>
+        {%elif usuario.rol.rol_id == 2%}
+        <option value="1">Administrador</option>
+        <option value="2" selected="true">Instructor</option>
+        <option value="3">Encargado</option>
+        {%else%}
+        <option value="1">Administrador</option>
+        <option value="2">Instructor</option>
+        <option value="3" selected="true">Encargado</option>
+        {%endif%}
+
+      </select>
+      
+
+      <!-- Nombre empleado  -->
+      <label class="form-label" for="form2Example1" >Nombre</label>
+      <input required type="text" name="empleado_nombre" id="" pattern="[A-Za-z]+" style="margin: 0px 0px 20px 0px;" placeholder="Escribe aqui..." value="{{empleado.empleado_nombre}}"/>
+
+      <!-- apellido empleado  -->
+      <label class="form-label" for="form2Example1">Apellido</label>
+      <input required type="text" name="empleado_apellido" id="" pattern="[A-Za-z]+" style="margin: 0px 0px 20px 0px;" placeholder="Escribe aqui..." value="{{empleado.empleado_apellido}}"/> 
+
+      <!-- telefono empleado  -->
+      <label class="form-label" for="form2Example1">Teléfono</label>
+      <input type="text" name="empleado_telefono" id="" pattern="[0-9]{8}" placeholder="#### ####" style="margin: 0px 0px 20px 0px;" value="{{empleado.empleado_telefono}}"/> 
+
+      <!-- usuario_estado  -->
+      <label class="form-label" for="form2Example2">Estado</label>
+      <select name="usuario_estado" id="" style="margin: 0px 0px 10px 0px;">
+        {%if usuario.usuario_estado == 0%}
+        <option value="1">Activado</option>
+        <option value="0" selected="true">Desactivado</option>
+        {%else%}
+        <option value="1" selected="true">Activado</option>
+        <option value="0">Desactivado</option>
+        {%endif%}
+
+      </select>
+
+    </div> 
+
+    <!-- Submit  -->
+    <button type="submit"   class="btn btn-success" style="margin: 10px 0px 50px 0px; ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+      </svg> Guardar Cambios
+   </button>
+
+
+
+  </form>
+  
+  {%block javascript%}
+  <script>
+    var toastEl = document.querySelector('.toast');
+    var toast = new bootstrap.Toast(toastEl);
+    toast.show();
+  </script>
+  {%endblock%}
+
+{%endblock%}

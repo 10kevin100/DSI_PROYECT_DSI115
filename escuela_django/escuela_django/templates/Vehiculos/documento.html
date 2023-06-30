@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <table  class="tabla">
+        <tr>
+            <th>#</th>
+            <th>Placa</th>
+            <th>Marca</th>
+            <th>Instructor</th>
+           
+                
+        </tr>
+        {% for vehiculo in listaVehiculos%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{vehiculo.vehiculo_placa}}</td>
+                <td>{{vehiculo.vehiculo_marca}}</td>
+                <td>{{vehiculo.instructor.empleado.empleado_nombre}}</td>
+               
+            </tr>
+
+        {% endfor %}
+    </table>
+</body>
+</html>

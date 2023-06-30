@@ -1,0 +1,63 @@
+.form-area{
+    padding: 7%;
+}
+
+.row.single-form{
+    box-shadow: 8px 2px 20px -5px rgba(0,0,0,0.5);
+}
+.arriba{
+    background-color: orange;
+    padding: 50px 35px 25px ;
+}
+.encabezado{
+    font-size: 55px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    margin: 0px 10px;
+}
+
+.right{
+    font-size: 15px;
+    left: -27px;
+    top: 40%;
+    
+}
+
+
+.instrucciones{
+    color: black;
+    font-size: 20px;
+    padding: 25px 0px 0px 0px;
+    text-align: justify;
+}
+
+.abajo{
+    padding: 50px 35px 25px ;
+    color: white;
+    font-size: 20PX;
+}
+
+
+.pregunta{
+    padding: 40px 0px 10px 00px;
+
+}
+
+.comentarios{
+    padding: 35px 0px 0px 0px;
+}
+
+.from-control1{
+    padding: 5px 5px 10px 10px;
+}
+
+
+
+.oculto {
+    display: none;
+}
+
+.boton{
+    text-align: right;
+}

@@ -1,0 +1,37 @@
+*{margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+    
+}
+    #nav_top_bar{
+        width: 100%;
+        background-color: #e57d18;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        color: white;
+        
+    }
+    #nav_top_bar ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #nav_top_bar ul li{
+        list-style: none;
+        padding: 0px 5px;     
+        margin: 0px 20px;        
+    }
+
+    #nav_top_bar ul li a{
+        font-size: 20px;
+        text-decoration: none;
+        color: white;
+    }
+    #nav_top_bar h1{
+        margin: 0,0;
+    }
+
+   

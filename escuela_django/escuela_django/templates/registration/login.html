@@ -1,0 +1,53 @@
+<!--Heredando de base-->
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}INICIO SESION{%endblock%}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/login/login.css'%}">
+
+  <div class="container">
+      <div class="row h-100">
+          <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+              <div class="d-table-cell align-middle">
+                  <div class="text-center mt-4">
+                      <h1 class="h2">Bienvenido a Escuela de Manejo Lopez</h1>
+                      <p>
+                         Ingrese sus datos para ingresar a la Escuela de Manejo Lopez
+                      </p>
+                  </div>
+
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="m-sm-4">
+                            <form style="text-align: center;" action="" method="post">
+                              <!--Para asegurar el formulario-->
+                              {% csrf_token %}
+                              <div class="log-in">
+                                <!-- Email  -->
+                                <div class="mb-3">
+                                <label for="form2Example1">Usuario</label>
+                                <input  class="form-control form-control-lg" type="text" name="username" id="" placeholder="Ingrese su usuario"/>
+                                </div>
+                                
+                                <!-- Password  -->
+                                <div class="mb-3">
+                                <label for="form2Example2">Contraseña:</label>
+                                <input class="form-control form-control-lg" type="password" name="password" id="" placeholder="Ingrese su contraseña"/>
+                               </div>
+                               <p>
+                                <a href="">Olvido contraseña</a>
+                               </p>
+                                <!-- Submit  -->
+                                <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-lg btn-primary" >Ingresar</button>
+                              </div>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{%endblock%}
